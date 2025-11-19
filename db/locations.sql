@@ -11,3 +11,7 @@ CREATE TABLE addresses (
     postal_code VARCHAR(20),
     country VARCHAR(100)
 );
+
+ALTER TABLE addresses
+ADD COLUMN lat DOUBLE,
+ADD COLUMN lon DOUBLE;
