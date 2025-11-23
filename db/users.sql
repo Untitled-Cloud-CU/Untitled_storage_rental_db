@@ -3,25 +3,21 @@
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    first_name VARCHAR(255) NOT NULL,
+    last_name  VARCHAR(255) NOT NULL,
+
     email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    phone VARCHAR(20),
+    phone VARCHAR(50),
+
     address VARCHAR(255),
-    city VARCHAR(100),
-    state VARCHAR(50),
+    city    VARCHAR(100),
+    state   VARCHAR(100),
     zip_code VARCHAR(20),
-    status ENUM('active', 'inactive', 'suspended') DEFAULT 'active',
-    location_id CHAR(36),  -- ✅ match addresses.id type exactly
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    INDEX idx_email (email),
-    INDEX idx_status (status),
-    CONSTRAINT fk_location
-        FOREIGN KEY (location_id)
-        REFERENCES addresses(id)
-        ON DELETE SET NULL
-        ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+    status VARCHAR(50) DEFAULT 'active',
+
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
